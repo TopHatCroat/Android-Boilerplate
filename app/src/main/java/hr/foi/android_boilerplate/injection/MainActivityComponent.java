@@ -3,7 +3,7 @@ package hr.foi.android_boilerplate.injection;
 import android.support.annotation.NonNull;
 
 import dagger.Subcomponent;
-import hr.foi.android_boilerplate.MainActivity;
+import hr.foi.android_boilerplate.places.main.MainActivity;
 import hr.foi.android_boilerplate.injection.modules.BasicModule;
 
 /**
