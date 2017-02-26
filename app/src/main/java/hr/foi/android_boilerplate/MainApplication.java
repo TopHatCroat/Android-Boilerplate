@@ -2,6 +2,8 @@ package hr.foi.android_boilerplate;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Debug;
+import android.os.StrictMode;
 
 import hr.foi.android_boilerplate.injection.ApplicationComponent;
 import hr.foi.android_boilerplate.injection.DaggerApplicationComponent;
@@ -16,6 +18,18 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if(BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
 
         getApplicationComponent();
     }

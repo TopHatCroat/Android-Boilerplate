@@ -2,8 +2,6 @@ package hr.foi.android_boilerplate.places.main;
 
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
