@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import hr.foi.android_boilerplate.R;
+import timber.log.Timber;
 
 /**
  * Base activity that every class should extend, it handles basic UI components
@@ -18,9 +19,12 @@ import hr.foi.android_boilerplate.R;
 
 public abstract class BaseActivity extends AppCompatActivity implements ViewLayer {
     protected Unbinder unbinder;
+    protected String NAME = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Timber.i("Activity initiated %s", NAME);
+
         setupActivityComponent();
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
@@ -32,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewLaye
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        Timber.i("Activity destroyed %s", NAME);
     }
 
     /**
