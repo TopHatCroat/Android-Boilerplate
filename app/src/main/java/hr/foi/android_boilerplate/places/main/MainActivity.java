@@ -1,9 +1,12 @@
 package hr.foi.android_boilerplate.places.main;
 
-import android.os.Bundle;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import hr.foi.android_boilerplate.MainApplication;
 import hr.foi.android_boilerplate.R;
 import hr.foi.android_boilerplate.base.BaseActivity;
@@ -14,14 +17,26 @@ public class MainActivity extends BaseActivity {
     @Inject
     MainPresenter mainPresenter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    @BindView(R.id.text_main_activity)
+    TextView textView;
 
     @Override
     protected int getLayout() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainPresenter.attachView(this);
+
+        mainPresenter.loadDummyData();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mainPresenter.detachView();
     }
 
     @Override
@@ -34,6 +49,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void showDummyData(String value) {
-        //TODO
+        textView = (TextView) findViewById(R.id.text_main_activity);
+        textView.setText(value);
     }
 }

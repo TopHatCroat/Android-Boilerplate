@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import hr.foi.android_boilerplate.data.DummyManager;
 import hr.foi.android_boilerplate.injection.modules.ApplicationModule;
 import hr.foi.android_boilerplate.injection.modules.BasicModule;
 import hr.foi.android_boilerplate.injection.modules.NetworkModule;
@@ -21,4 +22,6 @@ public interface ApplicationComponent {
 
     @NonNull
     MainActivityComponent inject(BasicModule basicModule);
+
+    DummyManager getDummyManager();
 }
