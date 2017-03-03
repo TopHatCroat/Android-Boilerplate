@@ -41,7 +41,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void setupActivityComponent() {
         MainApplication
-                .get(this)
                 .getUserComponent()
                 .inject(this);
     }
