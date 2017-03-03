@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 
-import hr.foi.android_boilerplate.data.models.User;
 import hr.foi.android_boilerplate.injection.ApplicationComponent;
 import hr.foi.android_boilerplate.injection.DaggerApplicationComponent;
 import hr.foi.android_boilerplate.injection.UserComponent;

@@ -3,9 +3,7 @@ package hr.foi.android_boilerplate.injection;
 import android.support.annotation.NonNull;
 
 import dagger.Subcomponent;
-import hr.foi.android_boilerplate.MainApplication;
-import hr.foi.android_boilerplate.data.DummyManager;
-import hr.foi.android_boilerplate.injection.UserScope;
+import hr.foi.android_boilerplate.api.RestService;
 import hr.foi.android_boilerplate.injection.modules.BasicModule;
 import hr.foi.android_boilerplate.injection.modules.UserModule;
 import hr.foi.android_boilerplate.places.main.MainActivity;
@@ -23,5 +21,6 @@ public interface UserComponent {
     @NonNull
     void inject(MainActivity mainActivity);
 
-    DummyManager getDummyManager();
+    RestService getRestService();
+
 }

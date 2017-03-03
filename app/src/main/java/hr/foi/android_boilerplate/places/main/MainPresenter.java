@@ -3,7 +3,7 @@ package hr.foi.android_boilerplate.places.main;
 import javax.inject.Inject;
 
 import hr.foi.android_boilerplate.base.BasePresenter;
-import hr.foi.android_boilerplate.data.DummyManager;
+import hr.foi.android_boilerplate.data.UserManager;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -14,11 +14,11 @@ import io.reactivex.disposables.Disposable;
 
 public class MainPresenter extends BasePresenter<MainActivity> {
 
-    private final DummyManager dummyManager;
+    private final UserManager userManager;
 
     @Inject
-    public MainPresenter(DummyManager dummyManager) {
-        this.dummyManager = dummyManager;
+    public MainPresenter(UserManager userManager) {
+        this.userManager = userManager;
     }
 
     public void loadDummyData() {
@@ -44,7 +44,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
             }
         };
 
-        Observable<String> dummyStream = dummyManager.getData();
+        Observable<String> dummyStream = userManager.getData();
         dummyStream.subscribe(dummyObserver);
     }
 
