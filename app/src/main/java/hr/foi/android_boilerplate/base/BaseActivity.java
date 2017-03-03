@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import hr.foi.android_boilerplate.BuildConfig;
 import hr.foi.android_boilerplate.R;
 import timber.log.Timber;
 
@@ -29,6 +30,10 @@ public abstract class BaseActivity extends AppCompatActivity implements ViewLaye
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+
+        if(BuildConfig.DEBUG_LOG) {
+            ButterKnife.setDebug(true);
+        }
         unbinder = ButterKnife.bind(this);
     }
 

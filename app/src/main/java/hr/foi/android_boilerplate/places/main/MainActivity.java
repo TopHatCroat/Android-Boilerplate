@@ -1,5 +1,7 @@
 package hr.foi.android_boilerplate.places.main;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -8,7 +10,6 @@ import butterknife.BindView;
 import hr.foi.android_boilerplate.MainApplication;
 import hr.foi.android_boilerplate.R;
 import hr.foi.android_boilerplate.base.BaseActivity;
-import hr.foi.android_boilerplate.injection.modules.BasicModule;
 
 public class MainActivity extends BaseActivity {
 
@@ -41,13 +42,17 @@ public class MainActivity extends BaseActivity {
     protected void setupActivityComponent() {
         MainApplication
                 .get(this)
-                .getApplicationComponent()
-                .inject(new BasicModule(this))
+                .getUserComponent()
                 .inject(this);
     }
 
     public void showDummyData(String value) {
         textView = (TextView) findViewById(R.id.text_main_activity);
         textView.setText(value);
+    }
+
+    public static void start(Activity startingActivity) {
+        Intent intent = new Intent(startingActivity, MainActivity.class);
+        startingActivity.startActivity(intent);
     }
 }

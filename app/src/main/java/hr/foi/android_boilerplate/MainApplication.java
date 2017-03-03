@@ -4,16 +4,21 @@ import android.app.Application;
 import android.content.Context;
 import android.os.StrictMode;
 
+import hr.foi.android_boilerplate.data.models.User;
 import hr.foi.android_boilerplate.injection.ApplicationComponent;
 import hr.foi.android_boilerplate.injection.DaggerApplicationComponent;
+import hr.foi.android_boilerplate.injection.UserComponent;
 import hr.foi.android_boilerplate.injection.modules.ApplicationModule;
+import hr.foi.android_boilerplate.injection.modules.NetworkModule;
+import hr.foi.android_boilerplate.injection.modules.UserModule;
 import timber.log.Timber;
 
 /**
  * Created by Antonio Martinović on 21.02.17.
  */
 public class MainApplication extends Application {
-    ApplicationComponent applicationComponent;
+    private static ApplicationComponent applicationComponent;
+    private static UserComponent userComponent;
 
     @Override
     public void onCreate() {
@@ -35,7 +40,23 @@ public class MainApplication extends Application {
                     .build());
         }
 
-        getApplicationComponent();
+        initializeInjection();
+    }
+
+    private void initializeInjection() {
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .networkModule(new NetworkModule())
+                .build();
+
+    }
+
+    public static void setUserComponent(UserModule userModule) {
+        userComponent = applicationComponent.plus(userModule);
+    }
+
+    public static UserComponent getUserComponent() {
+        return userComponent;
     }
 
     @Override
@@ -47,12 +68,9 @@ public class MainApplication extends Application {
         return (MainApplication) context.getApplicationContext();
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        if (applicationComponent == null) {
-            applicationComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(this))
-                    .build();
-        }
+    public static ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
+
+
 }
